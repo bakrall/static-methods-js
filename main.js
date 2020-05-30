@@ -1,4 +1,5 @@
 // based on https://www.youtube.com/watch?v=Jbopfp3LvRU
+//and https://www.youtube.com/watch?v=10b6K9fORI4 (techsith)
 
 (function() {
 	'use strict';
@@ -7,9 +8,19 @@
 		answer = $('.answer');
 
 	class Square {
-		constructor(width) {
-			this.width = width;
-			this.height = width;
+		// constructor(width) {
+		// 	this.width = width;
+		// 	this.height = width;
+		// }
+
+		getDimensions() {
+			const width = $('#width').val();
+			const height = $('#height').val();
+
+			return {
+				width,
+				height
+			}
 		}
 
 		static isValidSquare(width, height) {
@@ -17,12 +28,12 @@
 		}
 	}
 
+	const newSquare = new Square();
+
 	button.on('click', event => {
 		event.preventDefault();
-		const width = $('#width').val();
-		const height = $('#height').val();
 
-		console.log($('#width').val().length);
+		const {width, height} = newSquare.getDimensions();
 
 		if (!width.length || !height.length) {
 			answer.text('Please, give width and height');
